@@ -12,14 +12,26 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { FormEvent, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { addTodo } from "@/redux/features/todoSlice";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useAppDispatch();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log({ task, description });
+
+    const randomString = Math.random().toString(36).substring(2, 8);
+
+    const taskDetails = {
+      id: randomString,
+      title: task,
+      description: description,
+      isCompleted: false,
+    };
+    dispatch(addTodo(taskDetails));
   };
 
   return (
@@ -62,7 +74,7 @@ const AddTodoModal = () => {
             </div>
             <div className="flex justify-end">
               <DialogClose asChild>
-              <Button type="submit">Save changes</Button>
+                <Button type="submit">Save changes</Button>
               </DialogClose>
             </div>
           </form>
