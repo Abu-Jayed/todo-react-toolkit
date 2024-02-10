@@ -31,7 +31,11 @@ const TodoCard = ({ todo }: TTodoCardProps) => {
       />
       <p className="font-semibold flex-1">{title}</p>
       <div className="flex-1 flex items-center gap-2">
-        <div className={`size-3 rounded-full ${priority == "High"?"bg-red-500":""} ${priority == "Medium"?"bg-orange-500":""}`}></div>
+        <div
+          className={`size-3 rounded-full ${
+            priority == "High" ? "bg-red-500" : ""
+          } ${priority == "Medium" ? "bg-orange-500" : ""} ${priority == "Low" ? "bg-yellow-500" : ""} `}
+        ></div>
         <p>{priority}</p>
       </div>
       <div className="flex-1">
